@@ -1,0 +1,339 @@
+@font-face {
+  font-family: "InterLocal";
+  src: url("../assets/fonts/Inter-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "InterLocal";
+  src: url("../assets/fonts/Inter-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --text: #1b1b1d;
+  --muted: #666a70;
+  --line: #d8dbe0;
+  --soft: #f4f5f7;
+  --paper: #ffffff;
+  --accent: #1f6f61;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: var(--text);
+  background: var(--paper);
+  font-family: "InterLocal", Arial, sans-serif;
+  line-height: 1.5;
+}
+
+.site-header {
+  border-bottom: 1px solid var(--line);
+  background: var(--paper);
+}
+
+.navbar-brand {
+  font-weight: 600;
+}
+
+.section {
+  padding: 40px 0;
+}
+
+#menu {
+  padding-top: 18px;
+}
+
+.section-muted {
+  background: var(--soft);
+  border-top: 1px solid var(--line);
+}
+
+.narrow {
+  max-width: 760px;
+}
+
+.control-panel,
+.filters {
+  border-top: 1px solid var(--line);
+  padding: 18px 0;
+}
+
+.control-panel {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.control-row {
+  display: grid;
+  grid-template-columns: minmax(180px, 260px) 1fr;
+  gap: 16px;
+}
+
+.button-row,
+.day-tabs,
+.restaurant-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.btn {
+  border-radius: 999px;
+  border-color: transparent;
+  background: rgba(229, 231, 235, 0.88);
+  color: #050608;
+  padding: 7px 18px;
+  font-weight: 500;
+  opacity: 1;
+  transition: background-color 0.18s ease, transform 0.18s ease;
+}
+
+.btn:hover,
+.btn:focus-visible,
+.btn.active {
+  background: rgba(212, 216, 222, 0.96);
+  color: #050608;
+  transform: translateY(-1px);
+}
+
+.btn-outline-dark {
+  color: #050608;
+  border-color: transparent;
+  background: rgba(229, 231, 235, 0.88);
+}
+
+.btn-outline-dark:hover,
+.btn-outline-dark:focus-visible,
+.btn-outline-dark.active {
+  color: #050608;
+  border-color: transparent;
+  background: rgba(212, 216, 222, 0.96);
+}
+
+.refresh-button {
+  color: #050608;
+  border-color: transparent;
+  background: rgba(229, 231, 235, 0.88);
+}
+
+.refresh-button:hover,
+.refresh-button:focus-visible {
+  color: #050608;
+  background: rgba(212, 216, 222, 0.96);
+  border-color: transparent;
+}
+
+.day-tabs button {
+  min-height: 40px;
+}
+
+.day-tabs .active {
+  color: #fff;
+  background: var(--text);
+  border-color: var(--text);
+}
+
+.restaurant-filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 38px;
+  padding: 7px 18px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fff;
+  cursor: pointer;
+  transition: background-color 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+}
+
+.restaurant-filter:hover,
+.restaurant-filter.is-checked {
+  border-color: #c6cbd4;
+  background: #f7f8fa;
+  transform: translateY(-1px);
+}
+
+.restaurant-filter input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.checkbox-box {
+  position: relative;
+  display: inline-flex;
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #b7bdc7;
+  border-radius: 7px;
+  background: #fff;
+  transition: background-color 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+}
+
+.checkbox-box::after {
+  content: "";
+  width: 8px;
+  height: 5px;
+  border-left: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  opacity: 0;
+  transform: rotate(-45deg) scale(0.6);
+  transition: opacity 0.16s ease, transform 0.16s ease;
+}
+
+.restaurant-filter input:checked + .checkbox-box {
+  border-color: #0d6efd;
+  background: #0d6efd;
+  transform: scale(1.04);
+}
+
+.restaurant-filter input:checked + .checkbox-box::after {
+  opacity: 1;
+  transform: rotate(-45deg) scale(1);
+}
+
+.loading {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 16px 0;
+  color: var(--muted);
+  animation: fade-up 0.22s ease both;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.restaurant-card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 18px;
+  background: var(--paper);
+  animation: fade-up 0.28s ease both;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+}
+
+.restaurant-card:hover {
+  border-color: #c6cbd4;
+  box-shadow: 0 10px 30px rgba(20, 24, 32, 0.08);
+  transform: translateY(-2px);
+}
+
+.restaurant-card h2 {
+  margin: 0 0 4px;
+  font-size: 1.25rem;
+}
+
+.restaurant-card h2 a {
+  color: var(--text);
+  text-decoration-color: transparent;
+}
+
+.restaurant-card h2 a:hover,
+.restaurant-card h2 a:focus-visible {
+  color: var(--text);
+  text-decoration-color: currentColor;
+}
+
+.restaurant-meta {
+  margin: 0 0 14px;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.menu-day {
+  margin-top: 16px;
+}
+
+.menu-day h3 {
+  margin: 0 0 10px;
+  font-size: 1rem;
+}
+
+.menu-item {
+  padding: 10px 0;
+  border-top: 1px solid var(--line);
+  animation: fade-up 0.24s ease both;
+}
+
+.menu-item:first-of-type {
+  border-top: 0;
+}
+
+.item-topline {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.item-type {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.item-price {
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+.item-detail {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.message {
+  grid-column: 1 / -1;
+  padding: 18px;
+  border: 1px solid var(--line);
+  background: var(--soft);
+}
+
+@media (max-width: 900px) {
+  .menu-grid,
+  .control-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
