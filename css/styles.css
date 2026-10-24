@@ -84,12 +84,6 @@ body {
   padding-top: 0;
 }
 
-.control-row {
-  display: grid;
-  grid-template-columns: minmax(180px, 260px) 1fr;
-  gap: 16px;
-}
-
 .button-row,
 .day-tabs,
 .restaurant-filters {
@@ -307,12 +301,6 @@ body {
   font-weight: 600;
 }
 
-.item-detail {
-  margin: 4px 0 0;
-  color: var(--muted);
-  font-size: 0.9rem;
-}
-
 .message {
   grid-column: 1 / -1;
   padding: 18px;
@@ -321,8 +309,7 @@ body {
 }
 
 @media (max-width: 900px) {
-  .menu-grid,
-  .control-row {
+  .menu-grid {
     grid-template-columns: 1fr;
   }
 }

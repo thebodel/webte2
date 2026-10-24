@@ -53,10 +53,7 @@ async function loadRestaurantMenu(restaurant) {
 }
 
 async function fetchRestaurantHtml(restaurant) {
-  const sourceMode = document.getElementById("sourceMode").value;
-  const requestUrl = sourceMode === "local" ? restaurant.localUrl : restaurant.sourceUrl;
-
-  const response = await fetch(requestUrl);
+  const response = await fetch(restaurant.localUrl);
   if (!response.ok) {
     throw new Error(`HTTP ${response.status}`);
   }

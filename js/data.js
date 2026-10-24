@@ -80,11 +80,6 @@ function emptyDays() {
   };
 }
 
-function splitAllergens(text) {
-  const match = text.match(/\(([\d,\s]+)\)|A([\d,\s]+)/);
-  return match ? (match[1] || match[2]).replace(/\s/g, "") : "";
-}
-
 function parsePrice(text) {
   const match = text.match(/\d+[,.]\d{2}\s*€/);
   return match ? match[0].replace(".", ",") : "";
@@ -115,9 +110,7 @@ function parseRiviera(html, restaurant) {
       days[currentDay].push({
         type: "Polievka",
         name: line,
-        price: currentPrice,
-        weight: "",
-        allergens: ""
+        price: currentPrice
       });
     }
 
@@ -125,9 +118,7 @@ function parseRiviera(html, restaurant) {
       days[currentDay].push({
         type: `Menu ${line.match(/^\d+/)[0]}`,
         name: line.replace(/^\d+\.\s*/, ""),
-        price: currentPrice,
-        weight: "",
-        allergens: ""
+        price: currentPrice
       });
     }
   });
@@ -158,9 +149,7 @@ function parseMlynskaKoliba(html, restaurant) {
       days[day].push({
         type: match[1],
         name: match[2].trim(),
-        price: currentPrice,
-        weight: "",
-        allergens: ""
+        price: currentPrice
       });
     });
   });
@@ -186,9 +175,7 @@ function parseEatAndMeet(html, restaurant) {
       days[dayKey].push({
       type,
       name: name.replace(/\s*\([\d,\s]+\)\s*$/, ""),
-      price: parsePrice(priceText),
-      weight: "",
-      allergens: ""
+      price: parsePrice(priceText)
       });
     });
   });
